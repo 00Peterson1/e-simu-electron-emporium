@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
@@ -29,6 +28,8 @@ const Checkout = () => {
     cvv: '',
   });
 
+  const [isMpesaLoading, setIsMpesaLoading] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -36,7 +37,7 @@ const Checkout = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Simple validation
@@ -50,6 +51,51 @@ const Checkout = () => {
         variant: "destructive",
       });
       return;
+    }
+
+    if (formData.paymentMethod === "mpesa") {
+      setIsMpesaLoading(true);
+      // Call the Supabase function to trigger STK push
+      try {
+        const response = await fetch(
+          "https://nlbyxwrfjtoopuduylop.functions.supabase.co/mpesa-stk",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              phone: formData.phone,
+              amount: Math.round(total), // Round total to integer
+            }),
+          }
+        );
+        const data = await response.json();
+        setIsMpesaLoading(false);
+        if (response.ok && data.CheckoutRequestID) {
+          toast({
+            title: "Check your phone!",
+            description:
+              "An M-Pesa prompt has been sent to your phone. Enter your PIN to complete the payment.",
+          });
+          clearCart();
+          navigate("/");
+          return;
+        } else {
+          toast({
+            title: "M-Pesa payment failed",
+            description: data.error || "There was a problem initiating payment. Please try again.",
+            variant: "destructive",
+          });
+          return;
+        }
+      } catch (error: any) {
+        setIsMpesaLoading(false);
+        toast({
+          title: "M-Pesa Error",
+          description: error.message || "Could not initiate payment.",
+          variant: "destructive",
+        });
+        return;
+      }
     }
 
     // Simulate order processing
@@ -195,7 +241,7 @@ const Checkout = () => {
                   <div className="space-y-4">
                     <Select
                       value={formData.paymentMethod}
-                      onValueChange={(value) => setFormData({...formData, paymentMethod: value})}
+                      onValueChange={(value) => setFormData({ ...formData, paymentMethod: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select payment method" />
@@ -247,13 +293,32 @@ const Checkout = () => {
                       </div>
                     )}
 
-                    {/* Optionally add Mpesa instructions/input here if needed. For now, just switching options. */}
+                    {/* Mpesa phone number (optional, as you may already have phone above) */}
+                    {formData.paymentMethod === "mpesa" && (
+                      <div className="space-y-2 pt-4 border-t border-border">
+                        <Label htmlFor="mpesaPhone">M-Pesa Phone Number</Label>
+                        <Input
+                          id="mpesaPhone"
+                          name="phone"
+                          placeholder="e.g. 07XXXXXXXX"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className="mt-1"
+                          required
+                        />
+                        <p className="text-xs text-muted-foreground">
+                          Ensure your phone is on and able to receive the STK push.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <Button type="submit" className="tech-button w-full text-lg py-4">
+                <Button type="submit" className="tech-button w-full text-lg py-4" disabled={isMpesaLoading}>
                   <Lock size={20} className="mr-2" />
-                  Complete Order - KSh {total.toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  {isMpesaLoading
+                    ? "Processing M-Pesa Payment..."
+                    : `Complete Order - KSh ${total.toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
                 </Button>
               </form>
             </div>

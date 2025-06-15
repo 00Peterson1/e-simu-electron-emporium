@@ -7,7 +7,7 @@ import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { useToast } from '../hooks/use-toast';
 import { CreditCard, Lock } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { supabase } from "@/integrations/supabase/client";
 
 type CheckoutFormProps = {
   total: number;

@@ -201,13 +201,13 @@ const Checkout = () => {
                         <SelectValue placeholder="Select payment method" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="credit">Credit Card</SelectItem>
-                        <SelectItem value="debit">Debit Card</SelectItem>
-                        <SelectItem value="paypal">PayPal</SelectItem>
+                        <SelectItem value="card">Card</SelectItem>
+                        <SelectItem value="mpesa">Mpesa</SelectItem>
                       </SelectContent>
                     </Select>
 
-                    {formData.paymentMethod && (
+                    {/* Show card details only when Card is selected */}
+                    {formData.paymentMethod === "card" && (
                       <div className="space-y-4 pt-4 border-t border-border">
                         <div>
                           <Label htmlFor="cardNumber">Card Number</Label>
@@ -246,6 +246,8 @@ const Checkout = () => {
                         </div>
                       </div>
                     )}
+
+                    {/* Optionally add Mpesa instructions/input here if needed. For now, just switching options. */}
                   </div>
                 </div>
 

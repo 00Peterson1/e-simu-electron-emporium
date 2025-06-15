@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
@@ -8,6 +7,7 @@ import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { useToast } from '../hooks/use-toast';
 import { CreditCard, Lock } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 type CheckoutFormProps = {
   total: number;
@@ -32,6 +32,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
     cvv: '',
   });
   const [isMpesaLoading, setIsMpesaLoading] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -60,38 +61,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
     if (formData.paymentMethod === "mpesa") {
       setIsMpesaLoading(true);
       try {
-        const response = await fetch(
-          "https://nlbyxwrfjtoopuduylop.functions.supabase.co/mpesa-stk",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              phone: formData.phone,
-              amount: Math.round(total),
-            }),
-          }
-        );
-        const data = await response.json();
-        setIsMpesaLoading(false);
-        if (response.ok && data.CheckoutRequestID) {
-          toast({
-            title: "Check your phone!",
-            description:
-              "An M-Pesa prompt has been sent to your phone. Enter your PIN to complete the payment.",
-          });
-          clearCart();
-          navigate("/");
-          return;
-        } else {
-          toast({
-            title: "M-Pesa payment failed",
-            description: data.error || "There was a problem initiating payment. Please try again.",
-            variant: "destructive",
-          });
-          return;
-        }
-      } catch (error: any) {
-        setIsMpesaLoading(false);
+        await handleMpesaPayment(formData, total);
+      } catch (error) {
         toast({
           title: "M-Pesa Error",
           description: error.message || "Could not initiate payment.",
@@ -108,6 +79,46 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
 
     clearCart();
     navigate("/");
+  };
+
+  const handleMpesaPayment = async (formData: any, total: number) => {
+    try {
+      setIsProcessing(true);
+      const { data, error } = await supabase.functions.invoke("mpesa-stk", {
+        body: {
+          phone: formData.phone,
+          amount: Math.round(total),
+        },
+      });
+      if (error) {
+        toast({
+          title: "M-Pesa payment failed",
+          description: "There was a problem initiating payment. Please try again.",
+          variant: "destructive",
+        });
+        setIsProcessing(false);
+        return;
+      }
+      setIsMpesaLoading(false);
+      toast({
+        title: "Check your phone!",
+        description:
+          "An M-Pesa prompt has been sent to your phone. Enter your PIN to complete the payment.",
+      });
+      clearCart();
+      navigate("/");
+      return;
+    } catch (err) {
+      toast({
+        title: "M-Pesa Error",
+        description: err.message || "Could not initiate payment.",
+        variant: "destructive",
+      });
+      setIsProcessing(false);
+      return;
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -310,4 +321,3 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
 };
 
 export default CheckoutForm;
-

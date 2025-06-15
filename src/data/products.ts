@@ -475,6 +475,46 @@ export const products: Product[] = [
     category: "Transportation",
     image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=400&fit=crop",
     onSale: true
+  },
+  {
+    id: 51,
+    name: "Basic Entry Earphones",
+    description: "Affordable wired earphones for everyday casual listening. Great for kids and basic use.",
+    price: 1,
+    category: "Earphones",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=400&fit=crop"
+  },
+  {
+    id: 52,
+    name: "Comfort Fit Earphones",
+    description: "Comfortable in-ear wired earphones with decent sound, excellent for calls and meetings.",
+    price: 5000,
+    category: "Earphones",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&fit=crop"
+  },
+  {
+    id: 53,
+    name: "Premium Studio Earphones",
+    description: "Audiophile grade earphones with high-fidelity sound; suitable for studio and audiophiles.",
+    price: 50000,
+    category: "Earphones",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop"
+  },
+  {
+    id: 54,
+    name: "Luxury Diamond Earphones",
+    description: "Hand-crafted designer earphones with luxury materials and the latest audio technology.",
+    price: 150000,
+    category: "Earphones",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=400&fit=crop"
+  },
+  {
+    id: 55,
+    name: "Ultimate Millionaire Earphones",
+    description: "For the elite: bespoke, diamond-encrusted earphones. The peak of luxury sound.",
+    price: 400000,
+    category: "Earphones",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=400&fit=crop"
   }
 ];
 
@@ -482,6 +522,7 @@ export const categories = [
   { name: "Smartphones", icon: "📱", count: products.filter(p => p.category === "Smartphones").length },
   { name: "Laptops", icon: "💻", count: products.filter(p => p.category === "Laptops").length },
   { name: "Headphones", icon: "🎧", count: products.filter(p => p.category === "Headphones").length },
+  { name: "Earphones", icon: "🎧", count: products.filter(p => p.category === "Earphones").length },
   { name: "Smartwatches", icon: "⌚", count: products.filter(p => p.category === "Smartwatches").length },
   { name: "Gaming", icon: "🎮", count: products.filter(p => p.category === "Gaming").length },
   { name: "Accessories", icon: "🔌", count: products.filter(p => p.category === "Accessories").length },

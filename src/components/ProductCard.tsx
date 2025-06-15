@@ -24,6 +24,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="product-card group">
+      {product.onSale && product.discount && (
+        <div className="absolute top-2 left-2 z-10 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+          -{product.discount}%
+        </div>
+      )}
+      
       <div className="aspect-square overflow-hidden bg-slate-700/50">
         <img
           src={product.image}
@@ -46,9 +52,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
         
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-emerald-400">
-            ${product.price.toLocaleString()}
-          </span>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold text-emerald-400">
+              KSh {product.price.toLocaleString()}
+            </span>
+            {product.originalPrice && (
+              <span className="text-sm text-slate-500 line-through">
+                KSh {product.originalPrice.toLocaleString()}
+              </span>
+            )}
+          </div>
           <Button
             onClick={handleAddToCart}
             className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white hover:shadow-lg hover:shadow-emerald-500/30 hover:scale-105 text-sm"

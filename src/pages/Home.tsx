@@ -14,6 +14,7 @@ import {
 
 const Home = () => {
   const featuredProducts = products.filter(product => product.featured);
+  const discountedProducts = products.filter(product => product.onSale);
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -120,6 +121,47 @@ const Home = () => {
             <Link to="/products">
               <button className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/30 hover:scale-105 flex items-center space-x-2 mx-auto text-lg">
                 <span>View All Products</span>
+                <ArrowRight size={20} />
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Discounted Products Section */}
+      <section className="py-16 bg-slate-900/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">🔥 Hot Deals</h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Limited time offers on premium electronics. Don't miss out!
+            </p>
+          </div>
+          
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {discountedProducts.map((product) => (
+                  <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                    <ProductCard product={product} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-12 bg-slate-800 border-slate-700 text-white hover:bg-red-600" />
+              <CarouselNext className="hidden md:flex -right-12 bg-slate-800 border-slate-700 text-white hover:bg-red-600" />
+            </Carousel>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link to="/products?sale=true">
+              <button className="bg-gradient-to-r from-red-600 to-orange-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-red-500/30 hover:scale-105 flex items-center space-x-2 mx-auto text-lg">
+                <span>View All Deals</span>
                 <ArrowRight size={20} />
               </button>
             </Link>

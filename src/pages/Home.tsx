@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { products, categories } from '../data/products';
@@ -182,7 +183,9 @@ const Home = () => {
               <div className="text-slate-400">Premium Products</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl lg:text-4xl font-bold text-emerald-400">7</div>
+              <div className="text-3xl lg:text-4xl font-bold text-emerald-400">
+                {categories.length}
+              </div>
               <div className="text-slate-400">Categories</div>
             </div>
             <div className="space-y-2">
@@ -201,3 +204,4 @@ const Home = () => {
 };
 
 export default Home;
+

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
@@ -116,9 +115,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
           amount: Math.round(total),
         },
       });
-      if (error || data?.error) {
-        throw new Error(data?.error || error.message || "M-Pesa error");
+
+      // ---- IMPROVED ERROR HANDLING STARTS HERE ----
+      if (error) {
+        throw new Error(error.message || "M-Pesa error");
       }
+      if (data && typeof data === "object" && data.error) {
+        throw new Error(data.error);
+      }
+      // ---- IMPROVED ERROR HANDLING ENDS HERE ----
+
       toast({
         title: "Check your phone!",
         description: "An M-Pesa prompt has been sent. Enter your PIN to complete the payment.",

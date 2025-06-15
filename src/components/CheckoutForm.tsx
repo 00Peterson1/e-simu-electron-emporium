@@ -310,3 +310,4 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
 };
 
 export default CheckoutForm;
+

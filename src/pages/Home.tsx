@@ -3,40 +3,47 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { products, categories } from '../data/products';
 import ProductCard from '../components/ProductCard';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '../components/ui/carousel';
 
 const Home = () => {
   const featuredProducts = products.filter(product => product.featured);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-950">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-secondary/20">
-        <div className="absolute inset-0 hero-gradient"></div>
-        <div className="absolute inset-0 opacity-30">
-          <div className="w-full h-full bg-gradient-to-br from-primary/5 to-accent/5"></div>
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/10 to-blue-900/10"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="w-full h-full bg-gradient-to-br from-emerald-500/5 to-blue-500/5"></div>
         </div>
         
         <div className="relative container mx-auto px-4 py-24 lg:py-32">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-fade-in">
+              <h1 className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-emerald-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent animate-fade-in">
                 Welcome to e-simu
               </h1>
-              <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
                 Discover the future of technology with our curated collection of premium electronics
               </p>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/products">
-                <button className="tech-button flex items-center space-x-2 text-lg px-8 py-4">
+                <button className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/30 hover:scale-105 flex items-center space-x-2 text-lg">
                   <span>Explore Products</span>
                   <ArrowRight size={20} />
                 </button>
               </Link>
               <Link to="/cart">
-                <button className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-background font-semibold py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/30">
+                <button className="bg-transparent border-2 border-emerald-500 text-emerald-400 hover:bg-emerald-600 hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/30">
                   View Cart
                 </button>
               </Link>
@@ -46,11 +53,11 @@ const Home = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 bg-card/50">
+      <section className="py-16 bg-slate-900/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Featured Categories</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Featured Categories</h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               Explore our comprehensive range of cutting-edge electronics
             </p>
           </div>
@@ -62,14 +69,14 @@ const Home = () => {
                 to={`/products?category=${encodeURIComponent(category.name)}`}
                 className="group"
               >
-                <div className="bg-card border border-border rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-2 hover:border-primary/50">
+                <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 hover:-translate-y-2 hover:border-emerald-500/50">
                   <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     {category.icon}
                   </div>
-                  <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-semibold text-lg mb-2 text-white group-hover:text-emerald-400 transition-colors duration-300">
                     {category.name}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-slate-400 text-sm">
                     {category.count} products
                   </p>
                 </div>
@@ -80,24 +87,38 @@ const Home = () => {
       </section>
 
       {/* Featured Products Section */}
-      <section className="py-16">
+      <section className="py-16 bg-slate-950">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Featured Products</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Featured Products</h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               Handpicked premium electronics that define the future
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {featuredProducts.map((product) => (
+                  <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                    <ProductCard product={product} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-12 bg-slate-800 border-slate-700 text-white hover:bg-emerald-600" />
+              <CarouselNext className="hidden md:flex -right-12 bg-slate-800 border-slate-700 text-white hover:bg-emerald-600" />
+            </Carousel>
           </div>
           
-          <div className="text-center">
+          <div className="text-center mt-12">
             <Link to="/products">
-              <button className="tech-button text-lg px-8 py-4 flex items-center space-x-2 mx-auto">
+              <button className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/30 hover:scale-105 flex items-center space-x-2 mx-auto text-lg">
                 <span>View All Products</span>
                 <ArrowRight size={20} />
               </button>
@@ -107,24 +128,24 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
+      <section className="py-16 bg-gradient-to-r from-slate-900 to-slate-800">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
-              <div className="text-3xl lg:text-4xl font-bold text-primary">50+</div>
-              <div className="text-muted-foreground">Premium Products</div>
+              <div className="text-3xl lg:text-4xl font-bold text-emerald-400">50+</div>
+              <div className="text-slate-400">Premium Products</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl lg:text-4xl font-bold text-primary">7</div>
-              <div className="text-muted-foreground">Categories</div>
+              <div className="text-3xl lg:text-4xl font-bold text-emerald-400">7</div>
+              <div className="text-slate-400">Categories</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl lg:text-4xl font-bold text-primary">24/7</div>
-              <div className="text-muted-foreground">Support</div>
+              <div className="text-3xl lg:text-4xl font-bold text-emerald-400">24/7</div>
+              <div className="text-slate-400">Support</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl lg:text-4xl font-bold text-primary">Fast</div>
-              <div className="text-muted-foreground">Shipping</div>
+              <div className="text-3xl lg:text-4xl font-bold text-emerald-400">Fast</div>
+              <div className="text-slate-400">Shipping</div>
             </div>
           </div>
         </div>

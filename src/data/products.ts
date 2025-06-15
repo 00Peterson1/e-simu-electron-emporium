@@ -27,7 +27,7 @@ export const products: Product[] = [
     description: "Pure Android experience with computational photography excellence",
     price: 999,
     category: "Smartphones",
-    image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop"
+    image: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=400&h=400&fit=crop"
   },
   {
     id: 4,
@@ -35,15 +35,15 @@ export const products: Product[] = [
     description: "Flagship killer with Snapdragon 8 Gen 3 and ultra-fast charging",
     price: 799,
     category: "Smartphones",
-    image: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=400&h=400&fit=crop"
+    image: "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=400&fit=crop"
   },
   {
     id: 5,
-    name: "Xiaomi 14 Ultra",
-    description: "Photography powerhouse with Leica collaboration and premium build",
-    price: 899,
+    name: "iPhone 14 Pro",
+    description: "Dynamic Island technology with A16 Bionic chip",
+    price: 999,
     category: "Smartphones",
-    image: "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=400&fit=crop"
+    image: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=400&h=400&fit=crop"
   },
 
   // Laptops
@@ -82,11 +82,11 @@ export const products: Product[] = [
   },
   {
     id: 10,
-    name: "HP Spectre x360",
-    description: "2-in-1 convertible with OLED display and premium aluminum build",
-    price: 1299,
+    name: "MacBook Air M2",
+    description: "Lightweight powerhouse with all-day battery life",
+    price: 1199,
     category: "Laptops",
-    image: "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=400&h=400&fit=crop"
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop"
   },
 
   // Headphones
@@ -125,9 +125,9 @@ export const products: Product[] = [
   },
   {
     id: 15,
-    name: "Beats Studio Pro",
-    description: "Wireless over-ear headphones with personalized spatial audio",
-    price: 349,
+    name: "Audio-Technica ATH-M50xBT2",
+    description: "Professional monitor headphones with wireless connectivity",
+    price: 199,
     category: "Headphones",
     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop"
   },
@@ -168,9 +168,9 @@ export const products: Product[] = [
   },
   {
     id: 20,
-    name: "Amazfit GTR 4",
-    description: "Rugged smartwatch with 14-day battery and 150+ sports modes",
-    price: 199,
+    name: "Apple Watch Ultra 2",
+    description: "Rugged titanium smartwatch for extreme adventures",
+    price: 799,
     category: "Smartwatches",
     image: "https://images.unsplash.com/photo-1617043786394-f977fa12eddf?w=400&h=400&fit=crop"
   },
@@ -211,11 +211,11 @@ export const products: Product[] = [
   },
   {
     id: 25,
-    name: "ASUS ROG Ally",
-    description: "Windows-based handheld gaming device with Ryzen Z1 Extreme",
-    price: 699,
+    name: "Meta Quest 3",
+    description: "Mixed reality VR headset with improved graphics and passthrough",
+    price: 499,
     category: "Gaming",
-    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=400&fit=crop"
+    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=400&h=400&fit=crop"
   },
 
   // Accessories
@@ -249,15 +249,15 @@ export const products: Product[] = [
     description: "Multi-port hub with HDMI, USB 3.0, and PD charging",
     price: 49,
     category: "Accessories",
-    image: "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400&h=400&fit=crop"
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=400&fit=crop"
   },
   {
     id: 30,
-    name: "Wireless Phone Stand",
-    description: "Adjustable stand with 15W fast wireless charging",
-    price: 29,
+    name: "Power Bank 20000mAh",
+    description: "High-capacity portable charger with fast charging support",
+    price: 49,
     category: "Accessories",
-    image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop"
+    image: "https://images.unsplash.com/photo-1609592388283-7bb23a8634b7?w=400&h=400&fit=crop"
   },
 
   // Home Tech
@@ -299,139 +299,129 @@ export const products: Product[] = [
     description: "Self-emptying robot vacuum with object detection and mapping",
     price: 599,
     category: "Home Tech",
-    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=400&fit=crop"
+    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=400&fit=crop"
   },
 
-  // Additional Smartphones
+  // Additional products to reach 50
   {
     id: 36,
-    name: "iPhone 14",
-    description: "Reliable flagship with A15 Bionic chip and improved cameras",
-    price: 799,
-    category: "Smartphones",
-    image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop"
+    name: "iPad Pro 12.9-inch M2",
+    description: "Professional tablet with M2 chip and Liquid Retina XDR display",
+    price: 1099,
+    category: "Tablets",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop"
   },
   {
     id: 37,
-    name: "Samsung Galaxy A54",
-    description: "Mid-range champion with flagship features at affordable price",
-    price: 449,
-    category: "Smartphones",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop"
+    name: "Surface Pro 9",
+    description: "2-in-1 laptop with Intel Core i7 and all-day battery",
+    price: 999,
+    category: "Tablets",
+    image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=400&h=400&fit=crop"
   },
   {
     id: 38,
-    name: "Nothing Phone (2)",
-    description: "Unique transparent design with Glyph interface and clean Android",
-    price: 599,
-    category: "Smartphones",
-    image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop"
+    name: "Samsung Galaxy Tab S9 Ultra",
+    description: "Ultra-large Android tablet with S Pen included",
+    price: 1199,
+    category: "Tablets",
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=400&fit=crop"
   },
-
-  // Additional Laptops
   {
     id: 39,
-    name: "Surface Laptop Studio 2",
-    description: "Convertible powerhouse for creators with RTX 4060 graphics",
-    price: 1999,
-    category: "Laptops",
-    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop"
+    name: "Canon EOS R6 Mark II",
+    description: "Full-frame mirrorless camera with dual-pixel autofocus",
+    price: 2499,
+    category: "Cameras",
+    image: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=400&fit=crop"
   },
   {
     id: 40,
-    name: "Razer Blade 15",
-    description: "Gaming laptop with premium build and RTX 4080 graphics",
-    price: 2299,
-    category: "Laptops",
-    image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=400&fit=crop"
+    name: "Sony A7 IV",
+    description: "Professional hybrid camera for photo and video creation",
+    price: 2198,
+    category: "Cameras",
+    image: "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400&h=400&fit=crop"
   },
-
-  // Additional Headphones
   {
     id: 41,
-    name: "Audio-Technica ATH-M50xBT2",
-    description: "Professional monitor headphones with wireless connectivity",
-    price: 199,
-    category: "Headphones",
-    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"
+    name: "GoPro Hero 12 Black",
+    description: "Action camera with 5.3K video and HyperSmooth stabilization",
+    price: 399,
+    category: "Cameras",
+    image: "https://images.unsplash.com/photo-1551817958-11e0f7bbea9c?w=400&h=400&fit=crop"
   },
   {
     id: 42,
-    name: "Beyerdynamic DT 770 Pro",
-    description: "Studio reference headphones with exceptional comfort",
-    price: 179,
-    category: "Headphones",
-    image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop"
+    name: "DJI Air 3",
+    description: "Dual-camera drone with 46-minute flight time",
+    price: 1549,
+    category: "Drones",
+    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&h=400&fit=crop"
   },
-
-  // Additional Gaming
   {
     id: 43,
-    name: "Meta Quest 3",
-    description: "Mixed reality VR headset with improved graphics and passthrough",
-    price: 499,
-    category: "Gaming",
-    image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop"
+    name: "DJI Mini 4 Pro",
+    description: "Compact drone with 4K HDR video and obstacle sensing",
+    price: 759,
+    category: "Drones",
+    image: "https://images.unsplash.com/photo-1508614999368-9260051292e5?w=400&h=400&fit=crop"
   },
   {
     id: 44,
-    name: "Gaming Monitor 27\" 4K",
+    name: "4K Gaming Monitor 27\"",
     description: "High refresh rate 4K monitor with HDR and G-Sync compatibility",
     price: 599,
-    category: "Gaming",
-    image: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=400&h=400&fit=crop"
+    category: "Monitors",
+    image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop"
   },
-
-  // Additional Accessories
   {
     id: 45,
-    name: "Webcam 4K Pro",
-    description: "Professional 4K webcam with auto-focus and noise cancellation",
-    price: 199,
-    category: "Accessories",
-    image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop"
+    name: "Ultrawide Monitor 34\"",
+    description: "Curved ultrawide display perfect for productivity and gaming",
+    price: 449,
+    category: "Monitors",
+    image: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&h=400&fit=crop"
   },
   {
     id: 46,
-    name: "Power Bank 20000mAh",
-    description: "High-capacity portable charger with fast charging support",
-    price: 49,
-    category: "Accessories",
-    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=400&fit=crop"
+    name: "Wireless Earbuds Pro",
+    description: "Premium earbuds with active noise cancellation",
+    price: 179,
+    category: "Audio",
+    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop"
   },
   {
     id: 47,
     name: "Bluetooth Speaker Portable",
     description: "Waterproof speaker with 360-degree sound and 24h battery",
     price: 79,
-    category: "Accessories",
-    image: "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?w=400&h=400&fit=crop"
+    category: "Audio",
+    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop"
   },
   {
     id: 48,
-    name: "Cable Organizer Set",
-    description: "Premium cable management solution for desk organization",
-    price: 24,
-    category: "Accessories",
-    image: "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400&h=400&fit=crop"
+    name: "Smart Home Hub",
+    description: "Central control hub for all your smart home devices",
+    price: 129,
+    category: "Smart Home",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=400&fit=crop"
   },
-
-  // Additional Home Tech
   {
     id: 49,
-    name: "Smart Security Camera",
+    name: "Security Camera 4K",
     description: "Indoor/outdoor camera with night vision and AI detection",
-    price: 129,
-    category: "Home Tech",
-    image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop"
+    price: 299,
+    category: "Security",
+    image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&h=400&fit=crop"
   },
   {
     id: 50,
-    name: "Smart Plug 4-Pack",
-    description: "WiFi-enabled smart plugs with scheduling and voice control",
-    price: 39,
-    category: "Home Tech",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+    name: "Electric Scooter Pro",
+    description: "High-performance electric scooter with 40-mile range",
+    price: 899,
+    category: "Transportation",
+    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=400&fit=crop"
   }
 ];
 

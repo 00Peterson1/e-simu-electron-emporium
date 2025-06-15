@@ -7,9 +7,10 @@ import { useToast } from '../hooks/use-toast';
 
 interface ProductCardProps {
   product: Product;
+  discountColor?: string; // 'blue' (default) | 'red' for Hot Deals
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, discountColor = 'blue' }) => {
   const { addToCart } = useCart();
   const { toast } = useToast();
 
@@ -26,7 +27,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="product-card group relative text-white bg-[#19212c] border border-slate-800 rounded-xl shadow-sm dark-shadow">
       {/* Discount badge */}
       {product.onSale && product.discount && (
-        <div className="absolute top-2 left-2 z-10 bg-blue-700 text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm">
+        <div
+          className={`absolute top-2 left-2 z-10 text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm ${
+            discountColor === 'red'
+              ? 'bg-red-600'
+              : 'bg-blue-700'
+          }`}
+        >
           -{product.discount}%
         </div>
       )}
@@ -83,4 +90,3 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 };
 
 export default ProductCard;
-

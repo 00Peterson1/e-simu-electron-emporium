@@ -251,7 +251,7 @@ const Checkout = () => {
 
                 <Button type="submit" className="tech-button w-full text-lg py-4">
                   <Lock size={20} className="mr-2" />
-                  Complete Order - ${total.toFixed(2)}
+                  Complete Order - KSh {total.toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </Button>
               </form>
             </div>
@@ -275,7 +275,7 @@ const Checkout = () => {
                       <p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>
                     </div>
                     <div className="text-sm font-medium">
-                      ${(item.price * item.quantity).toLocaleString()}
+                      KSh {(item.price * item.quantity).toLocaleString('en-KE')}
                     </div>
                   </div>
                 ))}
@@ -284,7 +284,7 @@ const Checkout = () => {
               <div className="space-y-2 border-t border-border pt-4">
                 <div className="flex justify-between text-sm">
                   <span>Subtotal</span>
-                  <span>${state.total.toLocaleString()}</span>
+                  <span>KSh {state.total.toLocaleString('en-KE')}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Shipping</span>
@@ -292,11 +292,11 @@ const Checkout = () => {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Tax</span>
-                  <span>${(state.total * 0.08).toFixed(2)}</span>
+                  <span>KSh {(state.total * 0.08).toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
                 <div className="flex justify-between text-lg font-semibold border-t border-border pt-2">
                   <span>Total</span>
-                  <span className="text-primary">${total.toFixed(2)}</span>
+                  <span className="text-primary">KSh {total.toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
               </div>
             </div>

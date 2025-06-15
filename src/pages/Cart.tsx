@@ -84,10 +84,10 @@ const Cart = () => {
                         </div>
                         <div className="text-right">
                           <p className="text-xl font-bold text-primary">
-                            ${item.price.toLocaleString()}
+                            KSh {item.price.toLocaleString('en-KE')}
                           </p>
                           <p className="text-sm text-muted-foreground">
-                            Subtotal: ${(item.price * item.quantity).toLocaleString()}
+                            Subtotal: KSh {(item.price * item.quantity).toLocaleString('en-KE')}
                           </p>
                         </div>
                       </div>
@@ -142,7 +142,7 @@ const Cart = () => {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-muted-foreground">
                     <span>Items ({state.items.reduce((count, item) => count + item.quantity, 0)})</span>
-                    <span>${state.total.toLocaleString()}</span>
+                    <span>KSh {state.total.toLocaleString('en-KE')}</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
                     <span>Shipping</span>
@@ -150,13 +150,13 @@ const Cart = () => {
                   </div>
                   <div className="flex justify-between text-muted-foreground">
                     <span>Tax</span>
-                    <span>${(state.total * 0.08).toFixed(2)}</span>
+                    <span>KSh {(state.total * 0.08).toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                   <div className="border-t border-border pt-3">
                     <div className="flex justify-between text-lg font-semibold">
                       <span>Total</span>
                       <span className="text-primary">
-                        ${(state.total + state.total * 0.08).toFixed(2)}
+                        KSh {(state.total + state.total * 0.08).toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                   </div>

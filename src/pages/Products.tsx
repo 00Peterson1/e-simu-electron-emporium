@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { products, categories } from '../data/products';
@@ -50,7 +49,7 @@ const Products = () => {
             Our Products
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Discover our complete collection of premium electronics
+            Unwrap the power of technology with our diverse selection for every need.
           </p>
         </div>
 
@@ -82,19 +81,6 @@ const Products = () => {
               </SelectContent>
             </Select>
           </div>
-        </div>
-
-        {/* Results Summary */}
-        <div className="mb-8">
-          <p className="text-muted-foreground">
-            Showing {filteredProducts.length} of {products.length} products
-            {selectedCategory && selectedCategory !== 'All' && (
-              <span> in {selectedCategory}</span>
-            )}
-            {searchTerm && (
-              <span> matching "{searchTerm}"</span>
-            )}
-          </p>
         </div>
 
         {/* Products Grid */}

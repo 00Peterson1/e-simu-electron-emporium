@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { products, categories } from '../data/products';
@@ -38,7 +39,7 @@ const Home = () => {
                 Welcome to e-simu
               </h1>
               <p className="text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                Discover the future of technology with our curated collection of premium electronics
+                Powering your lifestyle with next-generation electronics and smart tech for every home.
               </p>
             </div>
             
@@ -63,9 +64,9 @@ const Home = () => {
       <section className="py-16 bg-slate-900/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Featured Categories</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Top Categories</h2>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Explore our comprehensive range of cutting-edge electronics
+              Find the tech that's just right for you and your family.
             </p>
           </div>
           
@@ -83,9 +84,7 @@ const Home = () => {
                   <h3 className="font-semibold text-lg mb-2 text-white group-hover:text-emerald-400 transition-colors duration-300">
                     {category.name}
                   </h3>
-                  <p className="text-slate-400 text-sm">
-                    {category.count} products
-                  </p>
+                  {/* Removed product count */}
                 </div>
               </Link>
             ))}
@@ -99,7 +98,7 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Tablets</h2>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              A selection of versatile tablets for work and play
+              The perfect blend of performance and mobility in every device.
             </p>
           </div>
           <div className="relative">
@@ -130,7 +129,7 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Featured Products</h2>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Handpicked premium electronics that define the future
+              Must-have picks chosen by our tech experts for you.
             </p>
           </div>
           
@@ -171,7 +170,7 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">🔥 Hot Deals</h2>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Limited time offers on premium electronics. Don't miss out!
+              Grab the best bargains in tech—our top electronics, now at unbeatable prices.
             </p>
           </div>
           
@@ -235,3 +234,4 @@ const Home = () => {
 };
 
 export default Home;
+

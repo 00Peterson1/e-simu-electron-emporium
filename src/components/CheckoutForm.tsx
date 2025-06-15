@@ -14,6 +14,19 @@ type CheckoutFormProps = {
   clearCart: () => void;
 };
 
+const formatPhoneForMpesa = (phone: string) => {
+  // Remove spaces, dashes, etc.
+  let cleaned = phone.replace(/\D/g, '');
+  // Handle 07XXXXXXXX or 2547XXXXXXXX formats
+  if (cleaned.length === 10 && cleaned.startsWith('07')) {
+    return '254' + cleaned.substring(1);
+  }
+  if (cleaned.length === 12 && cleaned.startsWith('2547')) {
+    return cleaned;
+  }
+  return null; // Invalid format
+};
+
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -58,20 +71,35 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
       return;
     }
 
+    // Mpesa: validate phone and process
     if (formData.paymentMethod === "mpesa") {
       setIsMpesaLoading(true);
-      try {
-        await handleMpesaPayment(formData, total);
-      } catch (error) {
+      const formattedPhone = formatPhoneForMpesa(formData.phone);
+      if (!formattedPhone) {
         toast({
-          title: "M-Pesa Error",
-          description: error.message || "Could not initiate payment.",
+          title: "Invalid Phone Number",
+          description: "Mpesa phone must start with 07... or 2547... and be valid.",
           variant: "destructive",
         });
+        setIsMpesaLoading(false);
         return;
       }
+      try {
+        await handleMpesaPayment({ ...formData, phone: formattedPhone }, total);
+        // If we get here, STK request sent successfully, success message will be shown from handleMpesaPayment!
+      } catch (error: any) {
+        toast({
+          title: "M-Pesa Error",
+          description: error?.message || "Could not initiate payment.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsMpesaLoading(false);
+      }
+      return; // Prevent generic success toast below, handleMpesaPayment shows its own
     }
 
+    // Card or other payment: show order confirmation & clear cart
     toast({
       title: "Order placed successfully!",
       description: `Thank you, ${formData.firstName}! Your order has been confirmed.`,
@@ -86,20 +114,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
       setIsProcessing(true);
       const { data, error } = await supabase.functions.invoke("mpesa-stk", {
         body: {
-          phone: formData.phone,
+          phone: formData.phone, // formatted already!
           amount: Math.round(total),
         },
       });
-      if (error) {
-        toast({
-          title: "M-Pesa payment failed",
-          description: "There was a problem initiating payment. Please try again.",
-          variant: "destructive",
-        });
-        setIsProcessing(false);
-        return;
+      if (error || data?.error) {
+        throw new Error(data?.error || error.message || "Mpesa error");
       }
-      setIsMpesaLoading(false);
       toast({
         title: "Check your phone!",
         description:
@@ -108,14 +129,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total, clearCart }) => {
       clearCart();
       navigate("/");
       return;
-    } catch (err) {
-      toast({
-        title: "M-Pesa Error",
-        description: err.message || "Could not initiate payment.",
-        variant: "destructive",
-      });
-      setIsProcessing(false);
-      return;
+    } catch (err: any) {
+      throw err;
     } finally {
       setIsProcessing(false);
     }

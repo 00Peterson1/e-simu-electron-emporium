@@ -14,6 +14,7 @@ const Contact = () => {
     subject: '',
     message: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -22,13 +23,40 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thank you for contacting us. We'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setLoading(true);
+    try {
+      const res = await fetch('/functions/v1/send-contact-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for contacting us. We'll get back to you soon.",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        toast({
+          title: "Error",
+          description: "There was a problem sending your message. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Could not send message. Please check your connection.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -41,7 +69,7 @@ const Contact = () => {
               Contact Us
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Have questions about our products? We're here to help. Get in touch with our expert team.
+              Have questions about our products? We're happy to help—get in touch directly.
             </p>
           </div>
 
@@ -61,6 +89,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       className="mt-1"
                       required
+                      disabled={loading}
                     />
                   </div>
                   <div>
@@ -73,6 +102,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       className="mt-1"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -86,6 +116,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     className="mt-1"
                     required
+                    disabled={loading}
                   />
                 </div>
                 
@@ -99,11 +130,12 @@ const Contact = () => {
                     onChange={handleInputChange}
                     className="mt-1 resize-none"
                     required
+                    disabled={loading}
                   />
                 </div>
                 
-                <Button type="submit" className="tech-button w-full text-lg py-3">
-                  Send Message
+                <Button type="submit" className="tech-button w-full text-lg py-3" disabled={loading}>
+                  {loading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
@@ -120,8 +152,8 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold">Phone</h3>
-                      <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                      <p className="text-sm text-muted-foreground">Mon-Fri 9AM-6PM EST</p>
+                      <p className="text-muted-foreground">+254 - 0705876467</p>
+                      <p className="text-sm text-muted-foreground">Mon-Fri 9AM-6PM Kenya Time (EAT)</p>
                     </div>
                   </div>
                   
@@ -131,7 +163,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold">Email</h3>
-                      <p className="text-muted-foreground">support@e-simu.com</p>
+                      <p className="text-muted-foreground">petersonpro001@gmail.com</p>
                       <p className="text-sm text-muted-foreground">We'll respond within 24 hours</p>
                     </div>
                   </div>
@@ -156,8 +188,8 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold">Business Hours</h3>
                       <div className="text-muted-foreground text-sm">
-                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                        <p>Saturday: 10:00 AM - 4:00 PM</p>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM (EAT)</p>
+                        <p>Saturday: 10:00 AM - 4:00 PM (EAT)</p>
                         <p>Sunday: Closed</p>
                       </div>
                     </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -19,6 +18,9 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm leading-relaxed">
               Your premier destination for cutting-edge electronics. 
               Experience the future of technology today.
+            </p>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              Developed by Peterson Mwaura, Nairobi, Kenya.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-300">

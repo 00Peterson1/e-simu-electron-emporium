@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -144,9 +143,8 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold">Address</h3>
                       <p className="text-muted-foreground">
-                        123 Tech Street<br />
-                        Silicon Valley, CA 94000<br />
-                        United States
+                        Haile Selassie Avenue<br/>
+                        Nairobi, Kenya
                       </p>
                     </div>
                   </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { products, categories } from '../data/products';
@@ -21,7 +20,6 @@ const featuredCategories = [
 const Home = () => {
   const featuredProducts = products.filter(product => product.featured);
   const discountedProducts = products.filter(product => product.onSale);
-  const tablets = products.filter(product => product.category === "Tablets");
 
   return (
     <div className="min-h-screen bg-slate-950">
@@ -88,37 +86,6 @@ const Home = () => {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tablets Category Section */}
-      <section className="py-16 bg-slate-950">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Tablets</h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              The perfect blend of performance and mobility in every device.
-            </p>
-          </div>
-          <div className="relative">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-2 md:-ml-4">
-                {tablets.map((product) => (
-                  <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                    <ProductCard product={product} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex -left-12 bg-slate-800 border-slate-700 text-white hover:bg-emerald-600" />
-              <CarouselNext className="hidden md:flex -right-12 bg-slate-800 border-slate-700 text-white hover:bg-emerald-600" />
-            </Carousel>
           </div>
         </div>
       </section>
@@ -234,4 +201,3 @@ const Home = () => {
 };
 
 export default Home;
-

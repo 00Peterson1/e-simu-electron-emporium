@@ -11,7 +11,11 @@ interface Props {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const PaymentMethodSection: React.FC<Props> = ({ formData, setFormData, handleInputChange }) => (
+const PaymentMethodSection: React.FC<Props> = ({
+  formData,
+  setFormData,
+  handleInputChange
+}) => (
   <div className="bg-card border border-border rounded-lg p-6">
     <h2 className="text-xl font-semibold mb-4 flex items-center space-x-2">
       <CreditCard size={20} />
@@ -20,7 +24,15 @@ const PaymentMethodSection: React.FC<Props> = ({ formData, setFormData, handleIn
     <div className="space-y-4">
       <Select
         value={formData.paymentMethod}
-        onValueChange={value => setFormData((prev: any) => ({ ...prev, paymentMethod: value }))}
+        onValueChange={value => setFormData((prev: any) => ({
+          ...prev,
+          paymentMethod: value,
+          // Reset payment info fields when switching
+          cardNumber: '',
+          expiryDate: '',
+          cvv: '',
+          phone: '',
+        }))}
       >
         <SelectTrigger>
           <SelectValue placeholder="Select payment method" />
@@ -30,11 +42,10 @@ const PaymentMethodSection: React.FC<Props> = ({ formData, setFormData, handleIn
           <SelectItem value="mpesa">Mpesa</SelectItem>
         </SelectContent>
       </Select>
-
       {formData.paymentMethod === "card" && (
         <div className="space-y-4 pt-4 border-t border-border">
           <div>
-            <Label htmlFor="cardNumber">Card Number</Label>
+            <Label htmlFor="cardNumber">Card Number *</Label>
             <Input
               id="cardNumber"
               name="cardNumber"
@@ -42,11 +53,12 @@ const PaymentMethodSection: React.FC<Props> = ({ formData, setFormData, handleIn
               value={formData.cardNumber}
               onChange={handleInputChange}
               className="mt-1"
+              required
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="expiryDate">Expiry Date</Label>
+              <Label htmlFor="expiryDate">Expiry Date *</Label>
               <Input
                 id="expiryDate"
                 name="expiryDate"
@@ -54,10 +66,11 @@ const PaymentMethodSection: React.FC<Props> = ({ formData, setFormData, handleIn
                 value={formData.expiryDate}
                 onChange={handleInputChange}
                 className="mt-1"
+                required
               />
             </div>
             <div>
-              <Label htmlFor="cvv">CVV</Label>
+              <Label htmlFor="cvv">CVV *</Label>
               <Input
                 id="cvv"
                 name="cvv"
@@ -65,31 +78,30 @@ const PaymentMethodSection: React.FC<Props> = ({ formData, setFormData, handleIn
                 value={formData.cvv}
                 onChange={handleInputChange}
                 className="mt-1"
+                required
               />
             </div>
           </div>
         </div>
       )}
-
       {formData.paymentMethod === "mpesa" && (
         <div className="space-y-2 pt-4 border-t border-border">
-          <Label htmlFor="mpesaPhone">M-Pesa Phone Number</Label>
+          <Label htmlFor="mpesaPhone">M-Pesa Phone Number *</Label>
           <Input
             id="mpesaPhone"
             name="phone"
-            placeholder="e.g. 07XXXXXXXX"
+            placeholder="e.g. 07XXXXXXXX, 2547XXXXXXXX, or 7XXXXXXXX"
             value={formData.phone}
             onChange={handleInputChange}
             className="mt-1"
             required
           />
           <p className="text-xs text-muted-foreground">
-            Ensure your phone is on and able to receive the STK push.
+            Enter the phone number that will receive the STK push (in Kenya).
           </p>
         </div>
       )}
     </div>
   </div>
 );
-
 export default PaymentMethodSection;
